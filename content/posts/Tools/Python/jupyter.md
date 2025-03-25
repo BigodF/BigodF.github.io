@@ -29,6 +29,8 @@ cover:
     relative: false
 ---
 
+在指定的python环境下，搭建jupyter notebook服务端，并设置密码。
+
 <!-- more -->
 
 

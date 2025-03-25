@@ -1,5 +1,5 @@
 ---
-title: "JupyterServer"
+title: "tempreture"
 date: 2025-03-20T22:31:10+08:00
 lastmod: 2025-03-20T22:31:10+08:00
 author: ["Bigodf"]
@@ -9,7 +9,7 @@ tags:
 - decoder
 - tempreture
 
-description: "Jupyter Sever开启服务" # 文章描述，与搜索优化相关
+description: "" # 文章描述，与搜索优化相关
 summary: "" # 文章简单描述，会展示在主页
 weight: # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
 slug: ""
@@ -30,21 +30,24 @@ cover:
     relative: false
 ---
 
+<!-- more -->
 
-# LLM decode温度的作用
-LLM在decode阶段，使用softmax计算每个token的输出概率，如下
-$$ p_i=softmax(\frac{logit_i}{T}) $$
+在decode阶段，使用softmax计算每个token的输出概率，如下
+
+$$ 
+    p_i=softmax(\frac{logit_i}{T}) 
+$$
 
 假设某一组$ logit $共有$ N $个元素，其中$ l_i、l_j $为任意两个元素，其原始概率记为$ p_i、p_j $，经过温度调整后的概率记为$ \hat{p}_i、\hat{p}_j $，以百分比的方式比较调整前后的概率差异。
 
 $$ \begin{align}
-r_{i,j} = \dfrac{p_i}{p_j} &= \dfrac
-  {\frac{e^{l_i}} {\sum^N_{k=0} {e^{l_k} } } } 
-  {\frac{e^{l_j}} {\sum^N_{k=0} {e^{l_k} } } } \\
-&=\frac{e^{l_i}}{e^{l_j}}\\
-&=e^{l_i - l_j}
-\end{align}
- $$
+        r_{i,j} = \dfrac{p_i}{p_j} &= \dfrac
+            {\frac{e^{l_i}} {\sum^N_{k=0} {e^{l_k} } } } 
+            {\frac{e^{l_j}} {\sum^N_{k=0} {e^{l_k} } } } \\
+        &=\frac{e^{l_i}}{e^{l_j}} \\
+        &=e^{l_i - l_j}
+    \end{align}
+$$
 
 同理，调整后的概率比$ \hat{r}_{i,j} $如下：
 
